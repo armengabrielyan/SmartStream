@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Videoportal</title>
+        <!-------------------------------------------- CSS INCLUDE     ------------------------------>
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.3.2.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css"  href="css/jquery.mobile.structure-1.3.2.css" />
+        <link rel="stylesheet" href="css/lean-slider.css" type="text/css" />
+        <link rel="stylesheet" href="css/sample-styles.css" type="text/css" />
+        <link rel="stylesheet" href="css/site.css" type="text/css" />
+
+        <!--------------------------------------------  JS INCLUDE    -------------------------------->
+        <script src="js/jquery-1.10.2.js"></script>
+        <script src="js/jquery.mobile-1.3.2.js"></script>
+        <script src="js/modernizr-2.6.1.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/flowtype.js"></script>
+        <script src = "js/lean-slider.js" ></script>
+        <script src="js/service_js/Translation.js"></script>
+        <script src="js/service_js/DataManager.js"></script>
+
+        <script>
+$(document).ready(function() {
+
+DataManager.initSubMenus();
+
+
+
+jQuery(DataManager.mainMenu).each(function(k, v) {
+
+
+    jQuery(v.subs).each(function(k, v2) {
+        var $button = jQuery('<a href="menus.html?id=' + v.id + ' " rel="external"><button style="width: 14%; height: 40px; margin-top:3px; margin-left:2px; padding:0px; " class="btn btn-primary1">' + v.title + '</button></a>');
+  
+           console.log(v.title);
+        
+$("#submenus").append($button);
+    
+    });
+
+
+    
+
+});
+
+});
+        </script>
+    </head>
+
+    <body>
+        <div class="body_div">
+            <div data-role="header" data-position="fixed">
+                <h4> VIDEO PORTAL</h4>
+
+
+            </div>
+
+            <div class="main_div">
+                <script> $('body').flowtype({
+                        minimum: 100,
+                        maximum: 600
+                    });</script>
+                <div class="img_div">
+                    <div class="slider-wrapper" >
+                        <div id="slider" style="border-radius: 10px;">
+                            <div class="slide1">
+                                <img src="images/1.jpg" alt="" />
+                            </div>
+                            <div class="slide2">
+                                <img src="images/2.jpg" alt="" />
+                            </div>
+                            <div class="slide3">
+                                <img src="images/3.jpg" alt="" />
+                            </div>
+                            <div class="slide4">
+                                <img src="images/4.jpg" alt="" />
+                            </div>
+                        </div>
+                        <div id="slider-direction-nav"></div>
+                        <div id="slider-control-nav"></div>
+                    </div>
+
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            var slider = $('#slider').leanSlider({
+                                directionNav: '#slider-direction-nav',
+                                controlNav: '#slider-control-nav'
+                            });
+                        });
+                    </script>
+                </div>
+
+                <div class="content_div" >
+                    <div class="menu_div" id="submenus"> 
+
+                    </div>
+                    <div class="videos_div">
+                        <div class="one_videos_div">
+
+                            <div class="video_atribut_div">
+                                <img src="pf_1369039217.jpg"/>
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                        </div>
+                        <div class="one_videos_div">
+
+                            <div class="video_atribut_div">
+                                <img src="pf_1369039217.jpg"/>
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                        </div>
+                        <div class="one_videos_div">
+
+                            <div class="video_atribut_div">
+                                <img src="pf_1369039217.jpg"/>
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                        </div>
+                        <div class="one_videos_div">
+
+                            <div class="video_atribut_div">
+                                <img src="pf_1369039217.jpg"/>
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                        </div>
+                        <div class="one_videos_div">
+
+                            <div class="video_atribut_div">
+                                <img src="pf_1369039217.jpg"/>
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                        </div>
+                        <div class="one_videos_div">
+
+                            <div class="video_atribut_div">
+                                <img src="pf_1369039217.jpg"/>
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                            <div class="video_atribut_div">
+                                dsadsfd
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </body>
+</html>

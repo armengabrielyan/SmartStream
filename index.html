@@ -1,0 +1,414 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Videoportal</title>
+        <!-------------------------------------------- CSS INCLUDE     ------------------------------>
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.3.2.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css"  href="css/jquery.mobile.structure-1.3.2.css" />
+        <link rel="stylesheet" href="css/lean-slider.css" type="text/css" />
+        <link rel="stylesheet" href="css/sample-styles.css" type="text/css" />
+        <link rel="stylesheet" href="css/site.css" type="text/css" />
+
+        <!--------------------------------------------  JS INCLUDE    -------------------------------->
+        <script src="js/jquery-1.10.2.js"></script>
+        <script src="js/jquery.mobile-1.3.2.js"></script>
+        <script src="js/modernizr-2.6.1.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/flowtype.js"></script>
+        <script src = "js/lean-slider.js" ></script>
+        <script src="js/service_js/Translation.js"></script>
+        <script src="js/service_js/DataManager.js"></script>
+
+        <script>
+
+				var ses_id;
+				var glbvar;
+                var purchased;
+                var move_code;
+				var login_id;
+				var log;
+            $(document).ready(function() {
+            
+                //console.log("sdfdsfds");
+                $('#mouve_div').hide();
+                $('#one_film').hide();
+                $("#login_div").hide();
+                $("#log").click(function() 
+				{
+					$("#mainmenu").hide();
+					$("#login_div").show();
+					$("#log").hide();
+                });
+                $("#log_in").click(function() 
+				{
+                    var username = $("#username").val();
+                    var password = $("#password").val();
+                    DataManager.login(username, password, function(loginResult) 
+					{ 
+					
+					console.log("loginResult", loginResult);
+						    jQuery(loginResult.data).each(function(k, vvv) {
+							login_id=vvv.id;
+							var $login_id=$('#login_id').val(login_id);
+							 ses_id=vvv.sess_id;
+                                console.log("ssssdsdsdsd", vvv.id);
+
+                                                    });
+							
+							
+				
+					
+
+                                              
+                        if (loginResult._ok == true) {
+                            glbvar = 1;
+                            $("#login_div").hide();
+                            $("#mainmenu").show();
+                            console.log("login_suc",glbvar);
+
+                        } else
+                        {
+                            //alert("error");
+                            $('#login_div').css('border', '2px #F00 solid');
+                            glbvar = 0;
+                            console.log("login_erroe", glbvar);
+							
+                        }
+						
+                        if (glbvar == 1) 
+						{
+							var $logout_button=$('<button id="logout" style=" width: 15%;  float: left; height: 25px; margin-top:3px; margin-left:2px; margin-bottom: 10px; padding:0px; " class="btn btn-primary1">Logout</button>');
+							$("#mail").append(username);
+							$("#logout").append($logout_button);
+								
+						}
+                        $("#logout").click(function ()
+							{
+							$('#example').hide();
+							$('#submenus').hide();
+							$('#mouve_div').hide();
+							$('#one_film').hide();
+							$("#login_div").hide();
+							$("#mail").append(username);
+							$('#log1').val(0);
+								$("#logout").append($logout_button);
+								$("#mail").hide();
+							$("#logout").hide();
+							$("#login_div").hide();
+							$("#mainmenu").show();
+							glbvar=0;
+							log=0;
+							
+							
+							
+							
+							ses_id="";
+							$("#mail").hide();
+							$("#logout").hide();
+							$("#login_div").hide();
+							$("#mainmenu").show();
+							
+							$("#log").show();
+							
+							
+							});
+					});
+                    //  alert (username);
+                    //  alert(password);
+					
+                });
+               // var button_clicked = false;
+                DataManager.initSubMenus();
+                jQuery(DataManager.mainMenu).each(function(k, v) {
+                    var $button = jQuery('<a href="#' + v.id + ' " rel="external"><button style="width: 100%; height: 40px; margin-top:3px; padding:0px; " class="btn btn-primary1">' + v.title + '</button></a>');
+                    $button.one("click", function() {
+                        $("#mainmenu").hide();
+                        $("#log").hide();
+//console.log(v);
+                        jQuery(v.subs).each(function(k, v2) {
+
+                            console.log("sssss", v2);
+//alert(v2.uid);
+                            var $button_sub = jQuery('<button style="width: 20%; height: 40px; margin-top:3px; margin-left:2px; padding:0px; " class="btn btn-primary1">' + v2.title + '</button>');
+
+                            $button_sub.click(function(viewMode, data) {
+
+
+
+                                $('#example').html("");
+                                $('#film_img').html('');
+                                $('#player_video').html('');
+                                $('#mouve_div').show();
+
+
+                                $('#example').show();
+                                $('#one_film').show();
+                                $('#mouve_div').hide();
+                                $('#mouve_img').html('');
+                                $('#film_name').html('');
+                                $('#year').html('');
+                                $('#contry').html('');
+                                $('#genre').html('');
+                                $('#lenght').html('');
+                                $('#content').html('');
+                                $('#actors').html('');
+                                //alert("dddd");
+
+                                DataManager.getMovies(v2.uid, function(data2) {
+                                    jQuery(data2.data).each(function(k, v3) {
+                                        console.log('v3', v3);
+                                        var $image = $('<div style="width:30%; margin:10px; float:left; padding:10px; box-shadow: 0 0 10px;  border-radius: 10px 10px 10px 10px;"><img id="img1" height="100%" style="width:100%;"  src="http://test2.bigbrain.am/menus_images/' + v3.image + '" >' + v3.name + ' <br>' + v3.year + ' <br>' + v3.country + ' <br>' + v3.genre + ' </div>');
+                                        var $image_div = $('<img id="img1" height="100%" style="width:100%;"  src="http://test2.bigbrain.am/menus_images/' + v3.image + '" >');
+                                        var $film_name = $('<span style="font-size:20px;">' + v3.name + '</span>');
+                                        var $year = $('<span> <b>Год выпуска: </b>' + v3.year + '</span>');
+                                        var $country = $('<span> <b> Страна: </b>' + v3.country + '</span>');
+                                        var $genre = $('<span> <b>Жанр:</b>' + v3.genre + '</span>');
+                                        var $lenght = $('<span><b> Продолжительность:</b>' + v3.lenght + '</span>');
+                                        var $content = $('<span> <b>Сюжет:</b> <br>' + v3.content + '</span>');
+                                        var $actors = $('<span> <b>Актеры:</b> <br>' + v3.actors + '</span>');
+                                        //    console.log('v3=', v3);
+                                        jQuery(v3).each(function(k, v4) {
+                                            // console.log(v4);
+
+                                            //   console.log("id=", v5.id);
+
+                                            // alert('asdasdasd');
+
+
+                                        });
+
+                                        //  var $name= '<div style="width:30%; margin:10px; float:left; padding:10px; border-radius: 10px 10px 10px 10px; border:1px red solid">''</div>'    
+                                        //console.log(v3);
+
+                                        $image.click(function() {
+
+                                            //   alert(v3.id);
+                                            // alert(v3.uri);
+                                            DataManager.getMovie(v3.id, function(data7)
+                                            {
+                                                jQuery(data7).each(function(k, v10)
+                                                {
+                                                    console.log('v10', v10);
+                                                });
+                                            });
+
+                                            // console.log(v3.movie);
+											console.log("v3", v3);
+											var $login_id= $('#login_id').val();
+											//alert($login_id);										
+                                            DataManager.getMoviePurchased(v3, ses_id,  function(pr_data) {
+					
+                                                jQuery(pr_data).each(function(k, vv) {
+                                                    jQuery(vv.data).each(function(k, vvv) {
+													
+													 //console.log("sadsadsadsadsad", vvv.ok);
+													 
+													 $("#log1").val(vvv.ok);
+													
+												
+                                                    	move_code=vvv.code;
+														   DataManager.getMovieStream(v3, function(video_data)
+                                            {
+                                                jQuery(video_data).each(function(k, video)
+                                                {
+                                                    jQuery(video.data).each(function(k, video1)
+                                                    {
+                                                        //  console.log("video", video1.video_link);
+                                                        console.log("pr", video1);
+														console.log("ssss",ses_id);
+														
+														
+														var $log_id=$("#log1").val();
+													
+                                                        if ($log_id == 0) {
+
+                                                            var $player_video = $('<div style="background: #000; margin-bottom:10px; margin-left:5px; color:#FFF; width:97%; height:400px; text-align:center; padding-top:100px;">Отправь СМС на номер 1006 текст  ' + vvv.code + ' <br>Зарегистрированные пользователи покупают этот фильм навсегда	</div>');
+
+                                                        } else {
+                                                            var $player_video = $('<object type="application/x-shockwave-flash" name="StrobeMediaPlayback" data="http://osmf.org/dev/1.5gm/StrobeMediaPlayback.swf" style="width:97%; height:400px; margin:10px;" id="StrobeMediaPlayback" style="visibility: visible;"> <param name="movie" value="http://fpdownload.adobe.com/strobe/FlashMediaPlayback_101.swf"></param> <param name="flashvars" value="src=' + video1.video_link + '&playButtonOverlay=false&autoPlay=true&streamType=recorded&bufferingOverlay=false&initialBufferTime=5"></param> <param name="allowFullScreen" value="true"></param> <param name="allowscriptaccess" value="always"></param> <param name="wmode" value="opaque"></param><embed   src="http://fpdownload.adobe.com/strobe/FlashMediaPlayback_101.swf" type="application/x-shockwave-flash" wmode="opaque" allowscriptaccess="always" allowfullscreen="true" width="640" height="360" flashvars="src=http%3A%2F%2F184.72.239.149%2Fvod%2Fsmil:bigbuckbunnybaseline.smil%2Fmanifest.f4m&playButtonOverlay=false&autoPlay=true&streamType=recorded&bufferingOverlay=false&initialBufferTime=5"></embed></object>');
+
+                                                        }
+                                                        $('#player_video').append($player_video);
+                                                    });
+                                                });
+                                            });	
+													
+														
+														
+														
+														
+														
+														
+														
+                                                       // purchased = vvv.ok;
+														console.log("getMoviePurchased=", vvv);
+                                                        console.log("code", vvv.code);
+                                                        
+                                                        
+										
+
+                                                    });
+
+                                                })
+
+
+
+                                            });
+                                            
+                                           
+
+
+
+
+
+                                            DataManager.getMovieImages(v3, function(data)
+                                            {       //films image
+                                                jQuery(data).each(function(k, v)
+                                                {
+                                                    jQuery(v.data).each(function(k, v2)
+                                                    {
+                                                        var $images_film = $('<img style="width:15%; margin-left:3px; " src="' + v2.url + '" title="' + v2.img_title + '" alt="' + v2.img_alt + '" />')
+                                                        //  console.log("getimage=", v2);
+                                                        $image.click(function()
+                                                        {
+                                                            alert('clicked', v2);
+
+                                                        });
+
+
+                                                        $('#film_img').append($images_film);
+                                                    });
+                                                });
+                                            });
+
+                                            //console.log("asaaaaaa", data7);
+
+                                            $('#example').hide();
+                                            $('#one_film').hide();
+                                            $('#mouve_div').show();
+                                            $('#mouve_img').append($image_div);
+                                            $('#film_name').append($film_name);
+                                            $('#year').append($year);
+                                            $('#contry').append($country);
+                                            $('#genre').append($genre);
+                                            $('#lenght').append($lenght);
+                                            $('#content').append($content);
+                                            $('#actors').append($actors);
+                                            // console.log(v3);
+                                            //});
+
+                                            //   console.log('clicked', v3.id);
+                                        });
+                                        $("#example").append($image);
+
+                                        //      $("#example").append($name);
+                                    });
+                                    // console.log(data2, data)
+                                    // console.log(data2.data);
+                                    if (data2.data)
+                                    {
+                                        for (var i = 0; i < data2.data.length; i++)
+                                        {
+                                            src: 'images/' + v2.uid + '/' + v2.uid + '.jpg'
+                                        }
+                                    } else {
+                                        //  console.log('Skip', v2.uid);
+                                    }
+                                });
+                            });
+                            $("#submenus").append($button_sub);
+                        });
+                    });
+                    $("#mainmenu").append($button);
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="body_div">
+            <div data-role="header">
+
+                <h4> VIDEO PORTAL</h4>
+                <div id="mail" style="width: 20%;"> </div>
+                <div id="logout" style="width: 20%;" ></div>
+                <button id="log" style=" width: 15%;  float: right; height: 25px; margin-top:3px; margin-left:2px; margin-bottom: 10px; padding:0px; " class="btn btn-primary1">Login</button>
+            </div>
+			<input type="hidden" id="login_id" />
+			<input type="hidden" id="log1" value="0"/>
+			<input type="hidden" id="purchased_id" />
+            <div class="main_div" >
+                <script> $('body').flowtype({
+                        minimum: 100,
+                        maximum: 600
+                    });</script>
+                <div id="img" class="img_div">
+                    <img  style="width: 99%; margin: auto auto; " src="/img/top_img.png" >
+                </div> 
+                <div class="content_div" >
+                    <div class="index_menu_div" id="mainmenu"> 
+
+                    </div>
+
+
+                    <div id="submenus" class="sub_menus">
+                        <div  id="login_div" style=" width: 30%; border-radius:  10px; box-shadow: 0 0  10px;   margin: auto auto;">
+                            <label style="text-align: left; cursor: inherit; margin: 5px; "for="username"> Username </label>
+                            <input type="text" name="username" id="username">
+                            <label style="text-align: left; cursor: inherit; margin: 5px;  for="password"> Password </label>
+                            <input type="password" name="username" id="password">
+                            <button id="log_in" style="width: 50%; height: 40px; margin-top:3px; margin-left:2px; margin-bottom: 10px; padding:0px; " class="btn btn-primary1">Login</button>
+                        </div>
+                    </div>
+                    <div style="float: left; width: 100%;" id="player_video">
+
+                    </div>
+                    <div id="one_film" style="display: none;">
+
+
+
+
+                    </div>
+
+
+                    <div id="example" style="float: left;" >
+                        <div id="player_video"  style=" width: 100%">
+
+
+
+                        </div>
+
+                    </div>
+                    <div id="mouve_div" style="margin:10px;">
+                        <div id="mouve_img" style="float: left; width:40%; border:1px green solid;">
+
+
+                        </div>
+                        <div style="float: left; width: 59%">
+                            <div id="film_name" style=" float: left; width: 100%; margin:10px;">
+                            </div>
+                            <div id="year" style="float: left; width: 100%; margin-left: 10px; margin-top:5px;">
+                            </div>
+                            <div id="contry" style="float: left; width: 100%; margin-left: 10px; margin-top:5px;">
+                            </div>
+                            <div id="genre" style="float: left;width: 100%; margin-left:10px; margin-top: 5px;">
+                            </div>
+                            <div id="lenght" style="float: left; width: 100%; margin-left: 10px; margin-top:5px;"></div>
+                            <div id="content" style="float: left; width: 100%; margin-left: 10px; margin-top: 5px; text-align: justify;"></div>
+                            <div id="film_img" style="width: 100%; float: left; margin-left: 10px;" ></div>
+                            <div id="actors" style="float: left; width:100%; margin-left: 10px; margin-top: 5px; text-align: justify;"></div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </body>
+</html>

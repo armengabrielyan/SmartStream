@@ -1,0 +1,93 @@
+boody {
+	margin: 0px;
+	padding: 0px;
+}
+
+.body_div {
+	position: absolute;
+	height: 100%;
+	background-color: #f2f3f5;
+	width: 100%;
+}
+
+.main_div {
+	width: 99%;
+	float: left;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.img_div {
+	width: 100%;
+	text-align: center;
+	background-color: #f2f3f5;
+	background-size: 100%; border-radius : 10px;
+	margin: 3px;
+	box-shadow: 0 0 10px 1px #9C9C9C;
+	background-size: 100%;
+	border-radius: 10px;
+}
+
+.content_div {
+	width: 100%;
+	border-radius: 10px;
+	margin: 3px;
+	background-color: #f2f3f5;
+	float: left;
+	border: 1px #9C9C9C solid;
+	box-shadow: 0 0 10px 1px #9C9C9C;
+	min-height: 200px;
+}
+
+.menu_div {
+	float: left;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+.videos_div {
+	float: left;
+	width: 100%;
+}
+.search_div {
+	width: 230px;
+	float: right;
+	margin-top: 3px;
+	margin-right: 5px;
+}
+
+.search_logo {
+	width: 25px;
+	height: 22px;
+	margin-left: -3px;
+	float: left;
+	border: none;
+}
+
+.one_videos_div {
+	width: 20%;
+	margin: 7px;
+	padding: 5px;
+	float: left;
+	border-radius: 10px;
+	border: 1px #9C9C9C solid
+}
+
+.video_atribut_div {
+	width: 100%;
+}
+
+.index_menu_div {
+	float: left;
+	width: 25%;
+	padding: 10px;
+}
+
+.sub_menus {
+	margin-top: 10px;
+	width: 100%;
+	text-align: center;
+        padding: 10px;
+}
