@@ -132,7 +132,7 @@
 
                             console.log("sssss", v2);
 //alert(v2.uid);
-                            var $button_sub = jQuery('<button style="width: 20%; height: 40px; margin-top:3px; margin-left:2px; padding:0px; " class="btn btn-primary1">' + v2.title + '</button>');
+                            var $button_sub = jQuery('<button style="width: 33%; height: 40px; margin-top:3px; margin-left:2px; padding:0px; " class="btn btn-primary1">' + v2.title + '</button>');
 
                             $button_sub.click(function(viewMode, data) {
 
@@ -225,10 +225,10 @@
 													
                                                         if ($log_id == 0) {
 
-                                                            var $player_video = $('<div style="background: #000; margin-bottom:10px; margin-left:5px; color:#FFF; width:97%; height:400px; text-align:center; padding-top:100px;">Отправь СМС на номер 1006 текст  ' + vvv.code + ' <br>Зарегистрированные пользователи покупают этот фильм навсегда	</div>');
+                                                            var $player_video = $('<div style="background: #000; margin-bottom:10px; margin-left:5px; color:#FFF; width:97%; height:180px; text-align:center; padding-top:80px;">Отправь СМС на номер 1006 текст  ' + vvv.code + ' <br>Зарегистрированные пользователи покупают этот фильм навсегда	</div>');
 
                                                         } else {
-                                                            var $player_video = $('<object type="application/x-shockwave-flash" name="StrobeMediaPlayback" data="http://osmf.org/dev/1.5gm/StrobeMediaPlayback.swf" style="width:97%; height:400px; margin:10px;" id="StrobeMediaPlayback" style="visibility: visible;"> <param name="movie" value="http://fpdownload.adobe.com/strobe/FlashMediaPlayback_101.swf"></param> <param name="flashvars" value="src=' + video1.video_link + '&playButtonOverlay=false&autoPlay=true&streamType=recorded&bufferingOverlay=false&initialBufferTime=5"></param> <param name="allowFullScreen" value="true"></param> <param name="allowscriptaccess" value="always"></param> <param name="wmode" value="opaque"></param><embed   src="http://fpdownload.adobe.com/strobe/FlashMediaPlayback_101.swf" type="application/x-shockwave-flash" wmode="opaque" allowscriptaccess="always" allowfullscreen="true" width="640" height="360" flashvars="src=http%3A%2F%2F184.72.239.149%2Fvod%2Fsmil:bigbuckbunnybaseline.smil%2Fmanifest.f4m&playButtonOverlay=false&autoPlay=true&streamType=recorded&bufferingOverlay=false&initialBufferTime=5"></embed></object>');
+                                                            var $player_video = $('<object type="application/x-shockwave-flash" name="StrobeMediaPlayback" data="http://osmf.org/dev/1.5gm/StrobeMediaPlayback.swf" style="width:97%; height:180px; margin:10px;" id="StrobeMediaPlayback" style="visibility: visible;"> <param name="movie" value="http://fpdownload.adobe.com/strobe/FlashMediaPlayback_101.swf"></param> <param name="flashvars" value="src=' + video1.video_link + '&playButtonOverlay=false&autoPlay=true&streamType=recorded&bufferingOverlay=false&initialBufferTime=5"></param> <param name="allowFullScreen" value="true"></param> <param name="allowscriptaccess" value="always"></param> <param name="wmode" value="opaque"></param><embed   src="http://fpdownload.adobe.com/strobe/FlashMediaPlayback_101.swf" type="application/x-shockwave-flash" wmode="opaque" allowscriptaccess="always" allowfullscreen="true" width="640" height="360" flashvars="src=http%3A%2F%2F184.72.239.149%2Fvod%2Fsmil:bigbuckbunnybaseline.smil%2Fmanifest.f4m&playButtonOverlay=false&autoPlay=true&streamType=recorded&bufferingOverlay=false&initialBufferTime=5"></embed></object>');
 
                                                         }
                                                         $('#player_video').append($player_video);
@@ -333,7 +333,7 @@
 
                 <h4> VIDEO PORTAL</h4>
                 <div id="mail" style="width: 20%;"> </div>
-                <div id="logout" style="width: 20%;" ></div>
+                <div id="logout" style="width: 120%;" ></div>
                 <button id="log" style=" width: 15%;  float: right; height: 25px; margin-top:3px; margin-left:2px; margin-bottom: 10px; padding:0px; " class="btn btn-primary1">Login</button>
             </div>
 			<input type="hidden" id="login_id" />
@@ -345,7 +345,7 @@
                         maximum: 600
                     });</script>
                 <div id="img" class="img_div">
-                    <img  style="width: 99%; margin: auto auto; " src="/img/top_img.png" >
+                    <img  style="width: 99%; margin: auto auto; " src="http://test2.bigbrain.am/images/top_img.png" >
                 </div> 
                 <div class="content_div" >
                     <div class="index_menu_div" id="mainmenu"> 
@@ -354,7 +354,7 @@
 
 
                     <div id="submenus" class="sub_menus">
-                        <div  id="login_div" style=" width: 30%; border-radius:  10px; box-shadow: 0 0  10px;   margin: auto auto;">
+                        <div  id="login_div" style=" width: 80%; border-radius:  10px; box-shadow: 0 0  10px;  margin: auto auto;">
                             <label style="text-align: left; cursor: inherit; margin: 5px; "for="username"> Username </label>
                             <input type="text" name="username" id="username">
                             <label style="text-align: left; cursor: inherit; margin: 5px;  for="password"> Password </label>
