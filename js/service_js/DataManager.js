@@ -8,9 +8,27 @@ var DataManager = {
         path: 'http://test2.bigbrain.am/menus_images/',
         moviePath:'http://test2.bigbrain.am/files_menus_pics/'
     },
-    getStreamURL:function(f){
+    /**
+     * 
+     * @param {type} f
+     * @param {type} mode 1-apple, 2-mobile, 0-others
+     * @returns {unresolved}
+     */
+    getStreamURL:function(f, mode){
+        mode = mode || 0;
     	var p = jQuery('<div/>').html(f).text().split('/');
-    	p.splice(-1,1,'playlist.m3u8|COMPONENT=HLS');
+        if(mode == 1){
+            p.pop();
+            var fname = p.pop().replace('mp4', 'smil');
+            p.push(fname);
+        	p.push(-1,1,'playlist.m3u8');
+        } else if(mode == 2) {
+            p.pop();
+            var fname = p.pop().replace('.mp4', 'mov');
+            p.push(fname);
+        } else {
+        	p.splice(-1,1,'playlist.m3u8|COMPONENT=HLS');
+        }
     	console.log(p)
     	return p.join('/');
     },
@@ -100,7 +118,7 @@ DataManager.responseOk = function(data) {
 DataManager.getMovies = function(catId, cb) {
     if(DataManager.storage.movies[catId]){
         cb(DataManager.createResponse(DataManager.storage.movies[catId]));
-        console.log('from cache', DataManager.storage.movies[catId]);
+        //console.log('from cache', DataManager.storage.movies[catId]);
         return;
     }
     $.ajax({
@@ -118,7 +136,7 @@ DataManager.getMovies = function(catId, cb) {
             if(r._ok){
                 DataManager.storage.movies[catId] = r.data;
             }
-            console.log('Movies loaded ', r, DataManager.storage.movies);
+            //console.log('Movies loaded ', r, DataManager.storage.movies);
             cb(r);
         }
     });
@@ -138,7 +156,7 @@ DataManager.getMovie = function(id, cb) {
         dataType: 'json',
         success: function(data) {
             var r = DataManager.createResponse(data);
-            console.log('Movie loaded ', r, DataManager.storage.movies);
+           // console.log('Movie loaded ', r, DataManager.storage.movies);
             cb(r);
         }
     });
@@ -156,7 +174,7 @@ DataManager.getMovieStream = function(movie, cb) {
         dataType: 'json',
         success: function(data) {
             var r = DataManager.createResponse(data);
-            console.log('Movie loaded ', r, DataManager.storage.movies);
+          //  console.log('Movie loaded ', r, DataManager.storage.movies);
             cb(r);
         }
     });
@@ -199,7 +217,7 @@ DataManager.getMovieImages = function(movie, cb) {
                     data[i].url = DataManager.images.moviePath + data[i].image;
                 }
             }
-            console.log('Images loaded ', r, DataManager.storage.movies);
+          //  console.log('Images loaded ', r, DataManager.storage.movies);
             cb(r);
         }
     });
@@ -224,7 +242,7 @@ DataManager.login = function(user, pass, cb) {
                     data[i].url = DataManager.images.moviePath + data[i].image;
                 }
             }
-            console.log('Images loaded ', r, DataManager.storage.movies);
+            //console.log('Images loaded ', r, DataManager.storage.movies);
             cb(r);
         }
     });

@@ -82,13 +82,13 @@ boody {
 .index_menu_div {
 	float: left;
 	
-	width: 93%;
+	width: 98%;
 	padding: 10px;
 }
 
 .sub_menus {
 	margin-top: 10px;
-	width: 100%;
+	width: 98%;
 	text-align: center;
-        padding: 10px;
+        padding: 5px;
 }
