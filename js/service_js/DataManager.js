@@ -29,7 +29,7 @@ var DataManager = {
         } else {
         	p.splice(-1,1,'playlist.m3u8|COMPONENT=HLS');
         }
-    	console.log(p)
+    	//console.log(p)
     	return p.join('/');
     },
     lang: '3', // eng
@@ -194,7 +194,7 @@ DataManager.getMoviePurchased = function(movie, sessid, cb) {
         dataType: 'json',
         success: function(data) {
             var r = DataManager.createResponse(data);
-            console.log('getMoviePurchased', r);
+            //console.log('getMoviePurchased', r);
             cb(r);
         }
     });
