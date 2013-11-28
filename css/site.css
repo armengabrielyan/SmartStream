@@ -80,10 +80,10 @@ boody {
 }
 
 .index_menu_div {
-	float: left;
-	
-	width: 98%;
+	//float: left;
+	width: 50%;
 	padding: 10px;
+        margin: auto auto;
 }
 
 .sub_menus {
