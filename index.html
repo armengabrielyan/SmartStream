@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Videoportal</title>
+        <title>Smart Stream</title>
         <!-------------------------------------------- CSS INCLUDE     ------------------------------>
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.3.2.css" />
         <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css" />
@@ -30,6 +30,7 @@
             var log;
             var arr_back = [];
             $(document).ready(function() {
+                $('#logout').hide();
                 var back;
                 $('#mouve_div').hide();
                 $('#one_film').hide();
@@ -57,7 +58,9 @@
                 $("#log").click(function()
                 {
                     arr_back.push(1);
+
                     logButton();
+
                 });
                 $("#log_in").click(function()
                 {
@@ -83,8 +86,9 @@
                         if (glbvar == 1)
                         {
                             var $logout_button = $('<button id="logout" style=" width: 15%;  float: left; height: 25px; margin-top:3px; margin-left:2px; margin-bottom: 10px; padding:0px; " class="btn btn-primary1">Logout</button>');
-                            $("#mail").append(username);
-                            $("#logout").append($logout_button);
+                            console.log(username);
+        $("#titl").html(username);
+                            $('#logout').show();
                         }
                         $("#logout").click(function()
                         {
@@ -101,10 +105,14 @@
                             $("#login_div").hide();
                             $("#mainmenu").show();
                             $log_id = 0;
+                            glbvar = 0;
+                            
+                            
                             $("#mail").hide();
                             $("#logout").hide();
                             $("#login_div").hide();
                             $("#log").show();
+                            window.location.reload(true);
                         });
                     });
                 });
@@ -141,7 +149,7 @@
                                 $('#actors').html('');
                                 $('#mouve_div').show();
                                 jQuery(v.subs).each(function(k, v2) {
-                                    var $button_sub = jQuery('<a href="' + v2.id + '#"   ><button id="sub_but" style="width: 15%; height: 40px; margin-top:3px; margin-left:3px;  padding:0px; " class="btn btn-primary1">' + v2.title + '</button></a>');
+                                    var $button_sub = jQuery('<a href="' + v2.id + '#"   ><button id="sub_but" style="width: 18%; font-size:11px; height: 40px; margin-top:3px; margin-left:3px;  padding:0px; " class="btn btn-primary1">' + v2.title + '</button></a>');
                                     $button_sub.click(function(viewMode, data) {
                                         arr_back.push(3);
                                         $('#example').html("");
@@ -295,10 +303,11 @@
             <div data-role="header">
 
                 <a href="#" id='back' data-icon="back"  title="Go back">Back</a>
-                <h4> VIDEO PORTAL</h4>
-                <div id="mail" style="width: 20%;"> </div>
-                <div id="logout" style="width: 20%;" ></div>
-                <button id="log" style=" width: 15%;  float: right; height: 25px; margin-top:3px; margin-left:2px; margin-bottom: 10px; padding:0px; " class="btn btn-primary1">Login</button>
+                <h4 id="titl">Smart Stream</h4>
+
+                <button id="logout" style=" width: 15%;  float: right; height: 25px; margin-top:3px; margin-left:2px; margin-bottom: 10px; padding:0px; " class="btn btn-primary1">Logout</button>
+                <button id="log"    style=" width: 15%;  float: right; height: 25px; margin-top:-35px; margin-left:2px; margin-bottom: 10px; padding:0px; " class="btn btn-primary1">Login</button>
+
             </div>
             <input type="hidden" id="login_id" />
             <input type="hidden" id="lo" />
