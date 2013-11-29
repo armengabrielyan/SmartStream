@@ -30,16 +30,14 @@
             var log;
             var arr_back = [];
             $(document).ready(function() {
-                glbvar = 0;
+			glbvar=0;
                 $('#logout').hide();
                 var back;
                 $('#mouve_div').hide();
                 $('#one_film').hide();
                 $("#login_div").hide();
                 function logButton() {
-
                     $("#mainmenu").hide();
-                    $("#submenus").hide();
                     $('#example').html("");
                     $('#film_img').html('');
                     $('#player_video').html('');
@@ -60,7 +58,7 @@
                 }
                 $("#log").click(function()
                 {
-
+				$('#submenus').hide();
                     arr_back.push(1);
 
                     logButton();
@@ -68,6 +66,7 @@
                 });
                 $("#log_in").click(function()
                 {
+				
                     var username = $("#username").val();
                     var password = $("#password").val();
                     DataManager.login(username, password, function(loginResult)
@@ -81,7 +80,7 @@
                             glbvar = 1;
                             $("#login_div").hide();
                             $("#mainmenu").show();
-
+                            console.log('asd');
                         } else
                         {
                             $('#login_div').css('border', '2px #F00 solid');
@@ -90,13 +89,12 @@
                         if (glbvar == 1)
                         {
                             var $logout_button = $('<button id="logout" style=" width: 15%;  float: left; height: 25px; margin-top:3px; margin-left:2px; margin-bottom: 10px; padding:0px; " class="btn btn-primary1">Logout</button>');
-
-                            $("#titl").html(username);
+                            console.log(username);
+        $("#titl").html(username);
                             $('#logout').show();
                         }
                         $("#logout").click(function()
                         {
-
                             $('#example').hide();
                             $('#submenus').hide();
                             $('#mouve_div').hide();
@@ -111,8 +109,7 @@
                             $("#mainmenu").show();
                             $log_id = 0;
                             glbvar = 0;
-
-
+                            
                             $("#mail").hide();
                             $("#logout").hide();
                             $("#login_div").hide();
@@ -129,8 +126,9 @@
                         k = v;
                         var $button = jQuery('<button style="width: 100%; height: 40px; margin-top:3px; padding:0px; " class="btn btn-primary1">' + v.title + '</button>');
                         $button.one("click", function() {
+						$('#submenus').show();
                             $('#back').show();
-                            //$('#log').hide();
+                         //   $('#log').hide();
                             arr_back.push(2);
                             $('#back').click(function() {
                                 size = $(arr_back).size();
@@ -140,10 +138,10 @@
                             });
                             $("#mainmenu").hide();
                             var SubButton = function() {
-                                // $("#example").html('');
+                                $("#example").html('');
                                 $('#film_img').html('');
                                 $('#player_video').html('');
-                                //  $("#submenus").html('');
+                                $("#submenus").html('');
                                 $('#mouve_img').html('');
                                 $('#film_name').html('');
                                 $('#year').html('');
@@ -154,7 +152,7 @@
                                 $('#actors').html('');
                                 $('#mouve_div').show();
                                 jQuery(v.subs).each(function(k, v2) {
-                                    var $button_sub = jQuery('<a href="' + v2.id + '#"   ><button id="sub_but" style="width: 18%; font-size:8px; height: 40px; margin-top:3px; margin-left:3px;  padding:0px; " class="btn btn-primary1">' + v2.title + '</button></a>');
+                                    var $button_sub = jQuery('<a href="' + v2.id + '#"   ><button id="sub_but" style="width: 18%; font-size:11px; height: 40px; margin-top:3px; margin-left:3px;  padding:0px; " class="btn btn-primary1">' + v2.title + '</button></a>');
                                     $button_sub.click(function(viewMode, data) {
                                         arr_back.push(3);
                                         $('#example').html("");
@@ -338,15 +336,15 @@
 
 
                     <div id="submenus" class="sub_menus">
-                    </div>
-                    <div  id="login_div" style=" width: 30%; border-radius:  10px;  box-shadow: 0 0  10px; text-align:center;   margin: auto auto; margin-bottom:10px;">
-                        <label style="text-align: left; cursor: inherit; margin: 5px;" for="username"> Username </label>
-                        <input type="text" name="username" id="username">
-                        <label style="text-align: left; cursor: inherit; margin: 5px;"  for="password"> Password </label>
-                        <input type="password" name="username" id="password">
-                        <button id="log_in" style="width: 50%; height: 40px; margin:auto auto;  padding:0px; " class="btn btn-primary1">Login</button>
-                    </div>
-
+					</div>
+                        <div  id="login_div" style=" width: 30%; border-radius:  10px; box-shadow: 0 0  10px;   margin: auto auto; margin-bottom:10px; text-align:center;">
+                            <label style="text-align: left; cursor: inherit; margin: 5px;" for="username"> Username </label>
+                            <input type="text" name="username" id="username">
+                            <label style="text-align: left; cursor: inherit; margin: 5px;"  for="password"> Password </label>
+                            <input type="password" name="username" id="password">
+                            <button id="log_in" style="width: 50%; height: 40px; margin-top:3px; margin-left:2px; margin-bottom: 10px; padding:0px; " class="btn btn-primary1">Login</button>
+                        </div>
+                    
                     <div style="float: left; width: 100%;" id="player_video">
 
                     </div>
