@@ -4,8 +4,8 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "am.bigbrain.smartstream"
-		versionCode = "122"
-        version   = "1.2.5">
+		versionCode = "310"
+        version   = "3.1.0">
 
     <name>SmartStream</name>
 
@@ -16,7 +16,7 @@
 
     <!--
         Enable individual API permissions here.
-        The "device" permission is required for the 'deviceready' event.
+        The "device" permission is required for the 'device ready' event.
     -->
    
 
@@ -34,7 +34,7 @@
     <preference name="fullscreen"                 value="true" />           <!-- all: hides the status bar at the top of the screen -->
     <preference name="webviewbounce"              value="true" />           <!-- ios: control whether the screen 'bounces' when scrolled beyond the top -->
     <preference name="prerendered-icon"           value="true" />           <!-- ios: if icon is prerendered, iOS will not apply it's gloss to the app's icon on the user's home screen -->
-    <preference name="stay-in-webview"            value="false" />          <!-- ios: external links should open in the default browser, 'true' would use the webview the app lives in -->
+    <preference name="stay-in-webview"            value="true" />          <!-- ios: external links should open in the default browser, 'true' would use the webview the app lives in -->
     <preference name="ios-statusbarstyle"         value="black-opaque" />   <!-- ios: black-translucent will appear black because the PhoneGap webview doesn't go beneath the status bar -->
     <preference name="detect-data-types"          value="true" />           <!-- ios: controls whether data types (such as phone no. and dates) are automatically turned into links by the system -->
     <preference name="exit-on-suspend"            value="false" />          <!-- ios: if set to true, app will terminate when home button is pressed -->
@@ -77,11 +77,12 @@
         Define access to external domains.
 
         <access />            - a blank access tag denies access to all external resources.
-        <access origin="*" /> - a wildcard access tag allows access to all external resource.
+        <access origin="*" /> - a wild card access tag allows access to all external resource.
 
         Otherwise, you can specify specific domains:
     -->
     <access origin="*"/> <!-- allow local pages -->
+	<access origin="..." />
     <!--
         <access origin="http://phonegap.com" />                    - allow any secure requests to http://phonegap.com/
         <access origin="http://phonegap.com" subdomains="true" />  - same as above, but including subdomains, such as http://build.phonegap.com/
